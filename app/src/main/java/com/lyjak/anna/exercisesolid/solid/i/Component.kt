@@ -8,3 +8,9 @@ interface Component {
     fun validate()
 
 }
+
+
+// poprawiony kod 
+
+
+????
