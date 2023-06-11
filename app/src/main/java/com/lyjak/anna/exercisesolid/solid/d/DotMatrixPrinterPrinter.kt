@@ -8,3 +8,13 @@ class DotMatrixPrinterPrinter {
     }
 
 }
+
+// poprawiony kod 
+
+class DotMatrixPrinter { //nazwa klasy bardziej czytelna bez powtarzania tego samego słowa
+    var inc: String? = null
+
+    fun print(text: String) {
+        println(text)
+    }
+}
