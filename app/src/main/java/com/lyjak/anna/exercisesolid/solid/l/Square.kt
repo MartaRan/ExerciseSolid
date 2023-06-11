@@ -15,8 +15,6 @@ class Square : Rectangle() {
         }
 
 }
-
-
 //poprawiony kod
 
 class Square(side: Double) : Rectangle(side, side) {// dodano odnośnil do klasy Rectangle p której dziedziczy Square
