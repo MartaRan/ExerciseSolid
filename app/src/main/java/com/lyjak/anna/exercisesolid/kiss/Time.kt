@@ -31,28 +31,29 @@ object Time {
 
 //poprawiona wersja
 
-//Zmieniono nazwy metod daysTime() i daysDate() na bardziej opisowe convertDaysToMilliseconds() i convertMillisecondsToDays(). 
-//Te metody konwertują między dniami a milisekundami, korzystając z zdefiniowanej stałej MILLISECONDS_PER_DAY.
+//Zmieniono nazwę stałej MILISECONDS na MILLISECONDS_PER_HOUR, aby bardziej precyzyjnie odzwierciedlała jej przeznaczenie. Reprezentuje liczbę milisekund w ciągu jednej godziny.
+//Zmieniono nazwę funkcji isTimeSmaller na isBeforeCurrentTime, aby precyzyjnie odzwierciedlać intencję funkcji. Funkcja sprawdza, czy podana wartość czasu jest wcześniejsza niż bieżący czas.
+//Zmieniono nazwę funkcji isDateSmaller na isBeforeCurrentDate, aby poprawić czytelność. Funkcja sprawdza, czy podana wartość daty jest wcześniejsza niż bieżąca data.
+//Zmieniono nazwę funkcji daysTime na getHoursFromTime, aby lepiej opisywała działanie funkcji. Oblicza liczbę godzin na podstawie podanej wartości czasu.
+//Zmieniono nazwę funkcji daysDate na getHoursFromDate, aby poprawić czytelność. Oblicza liczbę godzin na podstawie podanej wartości daty.
 
 object Time {
-    private const val MILLISECONDS_PER_DAY: Long = 24 * 60 * 60 * 1000 //Zdefiniowano tylko jedną stałą reprezentującą liczbę milisekund w jednym dniu.
-    fun isTimeSmaller(value: Long): Boolean {
-        return value < getCurrentTimeInMillis()
+
+    private const val MILLISECONDS_PER_HOUR: Long = 3600000
+
+    fun isBeforeCurrentTime(value: Long): Boolean {
+        return value < System.currentTimeMillis()
     }
 
-    fun isDateSmaller(value: Date): Boolean { //Metoda ta sprawdza, czy podana data jest wcześniejsza od aktualnego czasu. Podobnie jak w przypadku metody isTimeSmaller(), użyto prywatnej metody getCurrentTimeInMillis() do pobrania aktualnego czasu.
-        return value.time < getCurrentTimeInMillis()
+    fun isBeforeCurrentDate(value: Date): Boolean {
+        return value.time < System.currentTimeMillis()
     }
 
-    fun convertDaysToMilliseconds(days: Long): Long {
-        return days * MILLISECONDS_PER_DAY
+    fun getHoursFromTime(value: Long): Long {
+        return value / MILLISECONDS_PER_HOUR
     }
 
-    fun convertMillisecondsToDays(milliseconds: Long): Long {
-        return milliseconds / MILLISECONDS_PER_DAY
-    }
-
-    private fun getCurrentTimeInMillis(): Long { // Metoda ta sprawdza, czy podana wartość czasu (w milisekundach) jest mniejsza od aktualnego czasu i oddzielamy logikę pobierania aktualnego czasu
-        return System.currentTimeMillis()
+    fun getHoursFromDate(value: Date): Long {
+        return value.time / MILLISECONDS_PER_HOUR
     }
 }
