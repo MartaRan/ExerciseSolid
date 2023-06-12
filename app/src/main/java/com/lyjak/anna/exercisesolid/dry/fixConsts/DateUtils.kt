@@ -14,20 +14,20 @@ class DateUtils {
 
 
 //poprawiona wersja
+//Wyodrębniono wartość MILLISECONDS_PER_DAY jako pole klasy, aby uniknąć powtarzania obliczeń w obu funkcjach.
+//Zmieniono nazwy funkcji na bardziej adekwatne: getDaysInMiliseconds zmieniono na getDaysInMilliseconds, getMilisecondsInDays zmieniono na getMillisecondsInDays.
+//Poprawiono obliczenia w funkcjach getDaysInMilliseconds i getMillisecondsInDays, aby używały jednej wspólnej wartości MILLISECONDS_PER_DAY, zamiast powtarzać obliczenia.
+
 
 class DateUtils {
-    companion object {
-        private const val MILLISECONDS_PER_SECOND = 1000
-        private const val SECONDS_PER_MINUTE = 60
-        private const val MINUTES_PER_HOUR = 60
-        private const val HOURS_PER_DAY = 24
+
+    private val MILLISECONDS_PER_DAY: Long = 24 * 60 * 60 * 1000
+
+    fun getDaysInMilliseconds(milliseconds: Long): Long {
+        return milliseconds / MILLISECONDS_PER_DAY
     }
 
-    fun convertMillisecondsToDays(milliseconds: Long): Long {
-        return milliseconds / (MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE * MINUTES_PER_HOUR * HOURS_PER_DAY)
-    }
-
-    fun convertDaysToMilliseconds(days: Long): Long {
-        return days * (MILLISECONDS_PER_SECOND * SECONDS_PER_MINUTE * MINUTES_PER_HOUR * HOURS_PER_DAY)
+    fun getMillisecondsInDays(days: Long): Long {
+        return days * MILLISECONDS_PER_DAY
     }
 }
