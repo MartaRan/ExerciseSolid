@@ -11,10 +11,16 @@ class PrinterDesk(private val printer: DotMatrixPrinterPrinter) {
 
 //poprawiony kod 
 
+//powinna powtać klasa interface, gdzie będzie zdefiniowana funkcja drukowania "Printer"
+
+inteface Printer {
+fun printer(String)
+}
+
 class PrinterDesk(private val printer: DotMatrixPrinter) { //usunieto duplikat słowa printer
 
-    fun printFile(fileContent: String) {//zmieniono metodę aby przekazywała zawartość jako string 
-        printer.printText(fileContent)  // a następnie drukowała zawartość przekaznego pliku, a nie jak wcześnej nazwę "File Content
+  fun printFile() {
+        printer.print("File Content")
     }
 
 }
